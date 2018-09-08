@@ -9,11 +9,16 @@ const app = express();
 mongoose.connect('mongodb://localhost/todo');
 mongoose.Promise = global.Promise;
 
-//intialize middleware
 app.use(bodyParser.json());
 
 //intialize routes
 app.use('/api/', require('./routes/api'));
+
+//error handling middleware
+app.use(function(err, req, res, next){
+  // console.log(err);
+  res.status(422).send({error: err.message})
+});
 
 //listen for requests
 app.listen(process.env.port||4000, function(){

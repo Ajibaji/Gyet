@@ -6,8 +6,9 @@ const Todo = require('../models/todo');
 
 //get a list of todos from DB
 router.get('/todos', function(req, res, next){
-  console.log('GET request received');
-  res.send({ type:'GET' });
+  Todo.find().then(function(todo){
+    res.send(todo);
+  });
 });
 
 //add a new todo to the DB

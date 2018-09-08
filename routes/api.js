@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Todo = require('../models/todo');
 
 
 
@@ -11,12 +12,8 @@ router.get('/todos', function(req, res){
 
 //add a new todo to the DB
 router.post('/todos', function(req, res){
-  console.log('POST request receive');
-  console.log(req.body);
-  res.send({
-    type:'POST',
-    title: req.body.title,
-    details: req.body.details
+  Todo.create(req.body).then(function(todo){
+    res.send(todo);
   });
 });
 

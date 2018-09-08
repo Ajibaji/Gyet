@@ -19,14 +19,18 @@ router.post('/todos', function(req, res, next){
 
 //update a todo in the DB
 router.put('/todos/:id', function(req, res, next){
-  console.log('PUT request received');
-  res.send({ type:'PUT' });
+  Todo.findOneAndUpdate({_id: req.params.id}, req.body).then(function(){
+    Todo.findOne({_id: req.params.id}).then(function(todo){
+      res.send(todo);
+    });
+  });
 });
 
 //delete a todo from DB
 router.delete('/todos/:id', function(req, res, next){
-  console.log('DELET request received');
-  res.send({ type:'DELETE' });
+  Todo.findOneAndDelete({_id: req.params.id}).then(function(todo){
+    res.send(todo);
+  });
 });
 
 module.exports = router;

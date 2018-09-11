@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
 
-
+//tester routes
+router.get('/test', function(req, res, next){
+  res.send({
+    "item": "sample"
+  });
+});
 
 //get a list of todos from DB
 router.get('/todos', function(req, res, next){

@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 //connect to mongodb
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/todo');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/todo');
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
@@ -21,6 +21,6 @@ app.use(function(err, req, res, next){
 });
 
 //listen for requests
-app.listen(process.env.port||4000, function(){
-  console.log('now listening for requests');
+app.listen(process.env.PORT || 4000, function(){
+  console.log('GYET up, running and now listening for requests');
 });
